@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MESA Attendance</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+margin-top:100px;
+}
+button{
+padding:12px 25px;
+font-size:18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>MESA Attendance</h2>
+
+<p id="message">Checking QR validity...</p>
+
+<button id="enterBtn" style="display:none;">Open Attendance Form</button>
+
+<script>
+
+const formLink =
+"https://docs.google.com/forms/d/e/1FAIpQLScoE6xe0p7vZaKzrFkfbP8Dl52hhXGo9jQHlhX2R8N0kPJKDA/viewform";
+
+let params = new URLSearchParams(window.location.search);
+
+let scannedCode = params.get("code");
+
+let currentBlock = Math.floor(Date.now()/30000);
+
+let validCode = currentBlock.toString(36);
+
+if(scannedCode === validCode){
+
+document.getElementById("message").innerHTML="QR valid. Click below.";
+
+let btn = document.getElementById("enterBtn");
+
+btn.style.display="inline-block";
+
+btn.onclick=function(){
+
+window.location.href=formLink;
+
+};
+
+}
+else{
+
+document.getElementById("message").innerHTML="QR expired. Ask for new QR.";
+
+}
+
+</script>
+
+</body>
+</html>
