@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Attendance QR</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+margin-top:40px;
+}
+#qrcode{
+margin:auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Scan for Attendance</h2>
+
+<div id="qrcode"></div>
+
+<script>
+
+const baseLink =
+"https://soham159357-ship-it.github.io/mesa-attendance/?code=";
+
+function generateQR(){
+
+let block = Math.floor(Date.now()/30000);
+
+let code = block.toString(36);
+
+let link = baseLink + code;
+
+document.getElementById("qrcode").innerHTML="";
+
+new QRCode(document.getElementById("qrcode"),{
+text:link,
+width:260,
+height:260
+});
+
+}
+
+generateQR();
+
+setInterval(generateQR,30000);
+
+</script>
+
+</body>
+</html>
