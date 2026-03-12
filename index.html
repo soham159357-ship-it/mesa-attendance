@@ -27,8 +27,8 @@ font-size:18px;
 
 <script>
 
-const formLink =
-"https://docs.google.com/forms/d/e/1FAIpQLScoE6xe0p7vZaKzrFkfbP8Dl52hhXGo9jQHlhX2R8N0kPJKDA/viewform";
+const formBase =
+"https://docs.google.com/forms/d/e/1FAIpQLScoE6xe0p7vZaKzrFkfbP8Dl52hhXGo9jQHlhX2R8N0kPJKDA/viewform?usp=pp_url&entry.1607314733=";
 
 let params = new URLSearchParams(window.location.search);
 
@@ -40,26 +40,17 @@ let validCode = currentBlock.toString(36);
 
 if(scannedCode === validCode){
 
-document.getElementById("message").innerHTML="QR valid. Click below.";
-
-let btn = document.getElementById("enterBtn");
-
-btn.style.display="inline-block";
-
-btn.onclick=function(){
-
-window.location.href=formLink;
-
-};
+window.location.href = formBase + scannedCode;
 
 }
 else{
 
-document.getElementById("message").innerHTML="QR expired. Ask for new QR.";
+document.getElementById("message").innerHTML="QR expired";
 
 }
 
 </script>
 
 </body>
+
 </html>
